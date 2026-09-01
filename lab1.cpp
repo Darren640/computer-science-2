@@ -3,13 +3,9 @@
 #include <fstream>
 using namespace std;
 
-
-    //template the class
-    template<typename string>
-    string binarySearch()
-    
-
-    int binarySearch(double* A, int start, int end, double key) 
+// Template binary search function
+template<typename T>
+int binarySearch(T* A, int start, int end, T key) 
     {
     while(start <= end)
     {
@@ -21,11 +17,11 @@ using namespace std;
         }
         else if(key < A[mid])
         {
-            start = mid + 1;
+            end = mid - 1;
         }
         else
         {
-            end = mid - 1;
+            start = mid + 1;
         }   
         
     }
@@ -58,7 +54,8 @@ int main()
 	cout << binarySearch(A, 0, 9, 10.2) << endl; //-1 (not found)
 	
 	
-	//Step 2: Template your binary search	string* B;
+	//Step 2: Template your binary search
+	string* B;
 	B = new string[6];
 	B[0] = "apple";
 	B[1] = "banana";
@@ -69,6 +66,50 @@ int main()
 
     string key = "orange";
 	cout << binarySearch(B, 0, 5, key) << endl; //3
+
+    //Step 3: Write a spell-checker
+	//Create a loop in which the program
+	// 1) asks the user to enter a word,
+	// 2) tells the user if the word is spelled correctly or not
+	// 3) Goes back to the top of the loop and repeats.
+	
+	string* dictionary;
+	dictionary = new string[202413];
+	
+	// Read dictionary from file
+	ifstream dictFile("largeDictionary.txt");
+	int wordCount = 0;
+	while(dictFile >> dictionary[wordCount] && wordCount < 202413)
+	{
+		wordCount++;
+	}
+	dictFile.close();
+	
+	// Spell checker loop
+	string userWord;
+	while(true)
+	{
+		cout << "Enter a word (or 'quit' to exit): ";
+		cin >> userWord;
+		
+		if(userWord == "quit") break;
+		
+		int result = binarySearch(dictionary, 0, wordCount - 1, userWord);
+		
+		if(result != -1)
+		{
+			cout << "Good job, that is a real word!" << endl;
+		}
+		else
+		{
+			cout << "Wrong! That is a misspelled word!" << endl;
+		}
+	}
+	
+	// Clean up
+	delete[] A;
+	delete[] B;
+	delete[] dictionary;
 
 return 0;
 }
