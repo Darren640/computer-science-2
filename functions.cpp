@@ -29,7 +29,7 @@ for example 7%2 = 1 because 7 = 2 *3 + 1;
 
 /* #2: Write a function printOdd that takes as input an array and a start and end index, and prints all the odd values within that range.
 */
-    printOdd(int array[], int start, int end)
+   int printOdd(int array[], int start, int end)
     {
         for (int i = start; i <= end; i++) 
         {
@@ -92,7 +92,9 @@ int main()
 
 
 	//Write some test cases to test your isPrime function.
-
+    cout << "Testing isPrime function: " << endl;
+    cout << "isPrime(5) = " << isPrime(5) << endl;
+    cout << "isPrime(8) = " << isPrime(8) << endl;
+    cout << "isPrime(11) = " << isPrime(11) << endl;
 	return 0;
-}
 }
