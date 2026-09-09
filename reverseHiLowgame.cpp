@@ -34,7 +34,6 @@ Here is a sample run where the text prefixed with "(user)" is the user entered d
 int main()
 {
     int n;
-
     cout << "Enter a postive number: " << endl;
       cin >> n;
     cout << "Write down a number between 1 and " << n << " with pencil on a sheet of paper." << endl;

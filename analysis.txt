@@ -1,0 +1,2 @@
+The algorithm starts by guessing the number in the middle of the range. After each guess, half of the remaining possible numbers are eliminated depending on whether the guess is too high or too low.
+For n = 1,000,000, the maximum possible number of guesses is 20. The binary search algorithm divides the range in half after each guess so the maximum number of guesses is 20
