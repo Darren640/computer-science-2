@@ -1,48 +1,67 @@
 #include <iostream>
-#include <fstream>
 using namespace std;
 
-int binarySearch(double* A, int start, int end, double key)
+/*int binarysearch(int A[], int start, int end, int key)
 {
-    while (start <= end) 
+    while (start <= end)
     {
-        int mid = start + (end - start) / 2;
+        int mid = (start + end) / 2;
 
-        if(mid == key)
-        {
-            cout << "found key at index" << mid << endl;
-        }
-        else if (A[mid] < key) 
-        {
-            start = mid + 1;
-        }
-        else
-        {
-            end = mid - 1;
-        }
+            if (A[mid] == key)
+            {
+                return mid;
+            }
+            else if (A[mid] < key)
+            {
+                start = mid + 1;
+            }
+            else
+            {
+                end = mid - 1;
+            }
     }
+    return -1;
+
 }
+*/
+    int findsmallest(int* A, int start, int end)
+    {
+        int small = start;
+        for(int i = start + 1; i <= end; i++)
+        {
+            if(A[i] < A[small])
+            {
+                small = i;
+            }
+        }
+        return small;
+    }
 
-int main() 
-{
-    double* A;
-	A = new double[10];
+    void selectionsort(int* A, int start, int end)
+    {
+        for(int i = start; i <= end; i++)
+        {
+            int small = findsmallest(A, i, end);
 
-	A[0] = -5.2;
-	A[1] = -2.3;
-	A[2] = 1.7;
-	A[3] = 4.2;
-	A[4] = 7;
-	A[5] = 12;
-	A[6] = 27;
-	A[7] = 32;
-	A[8] = 42;
-	A[9] = 67;
+            swap(A[i], A[small]);
+        }
+    }  
 
-	//Step 1: Implement Binary Search
-	cout << binarySearch(A, 0, 9, 32.0) << endl; //7
-	cout << binarySearch(A, 0, 9, -2.3) << endl; //1
-	cout << binarySearch(A, 0, 9, 67.0) << endl; //9
-	cout << binarySearch(A, 0, 9, 10.2) << endl; //-1 (not found)
-    return 0;
-}
+    int main()
+    {
+        /*int A[10] = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50};
+        int target;
+        cout << "Enter the target value: ";
+        cin >> target;
+        int result = binarysearch(A, 0, 9, target);
+        if(result != -1)
+            cout << "Found at index: " << result << endl;
+        else
+            cout << "Not found" << endl;
+        */
+
+        int A*;
+        A = new int[5];
+
+
+    }
