@@ -12,39 +12,39 @@ class Calculator
             vector<double> undoStack;
             vector<double> redoStack;
 
-        void saveState();
+        void saveState()
         {
             undoStack.push_back(value);
             redoStack.clear(); 
         }
         public: 
         Calculator();
-        Calculator(double initialValue);
+        Calculator(double initialValue)
         {
-
+            value = initialValue;
         }
-        void clear();
+        void clear()
         {
             saveState();
             value = 0.0;
         }
-        void add(double amount);
+        void add(double amount)
         {
             saveState();
             value += amount;
         }
-        void subtract(double amount);
+        void subtract(double amount)
         {
             saveState();
             value -= amount;
 
         }
-        void multiply(double amount);
+        void multiply(double amount)
         {
             saveState();
             value *= amount;
         }
-        void divide(double amount);
+        void divide(double amount)
         {
             if (amount == 0.0)
             {
@@ -53,11 +53,11 @@ class Calculator
             saveState();
             value /= amount;
         }
-        double display() const;
+        double display() const
         {
             return value;
         }
-        void undo();
+        void undo()
         {
             if (!undoStack.empty())
             {
@@ -66,7 +66,7 @@ class Calculator
                 undoStack.pop_back();
             }
         }
-        void redo();
+        void redo()
         {
             if (!redoStack.empty())
             {
@@ -75,7 +75,7 @@ class Calculator
                 redoStack.pop_back();
             }   
         }
-        Calculator operator+(const Calculator& other) const;
+        Calculator operator+(const Calculator& other) const
         {
             Calculator result(value);
             result.add(other.display());
