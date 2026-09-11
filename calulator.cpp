@@ -18,7 +18,10 @@ class Calculator
             redoStack.clear(); 
         }
         public: 
-        Calculator();
+        Calculator()
+        {
+            value = 0.0;
+        }
         Calculator(double initialValue)
         {
             value = initialValue;
