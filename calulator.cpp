@@ -11,8 +11,13 @@ class Calculator
             double value;
             vector<double> undoStack;
             vector<double> redoStack;
-        public: 
 
+        void saveState();
+        {
+            undoStack.push_back(value);
+            redoStack.clear(); 
+        }
+        public: 
         Calculator();
         Calculator(double initialValue);
         {
@@ -20,42 +25,64 @@ class Calculator
         }
         void clear();
         {
-            value = 0;
+            saveState();
+            value = 0.0;
         }
-        void add(double value);
+        void add(double amount);
         {
-            
+            saveState();
+            value += amount;
         }
-        void subtract(double value);
+        void subtract(double amount);
         {
+            saveState();
+            value -= amount;
 
         }
-        void multiply(double value);
+        void multiply(double amount);
         {
-
+            saveState();
+            value *= amount;
         }
-        void divide(double value);
+        void divide(double amount);
         {
-
+            if (amount == 0.0)
+            {
+                throw invalid_argument("Division by zero is not allowed.");
+            }
+            saveState();
+            value /= amount;
         }
         double display() const;
         {
-
+            return value;
         }
         void undo();
         {
-
+            if (!undoStack.empty())
+            {
+                redoStack.push_back(value);
+                value = undoStack.back();
+                undoStack.pop_back();
+            }
         }
         void redo();
         {
-
+            if (!redoStack.empty())
+            {
+                undoStack.push_back(value);
+                value = redoStack.back();
+                redoStack.pop_back();
+            }   
         }
         Calculator operator+(const Calculator& other) const;
         {
-
+            Calculator result(value);
+            result.add(other.display());
+            return result;
         }
         
-    }
+    };
 
 
 
