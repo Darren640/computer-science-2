@@ -1,67 +1,29 @@
 #include <iostream>
+#include <stack>
 using namespace std;
 
-/*int binarysearch(int A[], int start, int end, int key)
+int main() 
 {
-    while (start <= end)
+    stack<int> numbers;
+    int u;
+    cout << "Enter numbers to 5 numbers: ";
+    for(int i = 0; i < 5; i++)
     {
-        int mid = (start + end) / 2;
-
-            if (A[mid] == key)
-            {
-                return mid;
-            }
-            else if (A[mid] < key)
-            {
-                start = mid + 1;
-            }
-            else
-            {
-                end = mid - 1;
-            }
+        cin >> u;
+        numbers.push(u);
     }
-    return -1;
+    cout << "Top value: " << numbers.top() << endl;
 
+    for(int i = 0; i < 2; i++)
+    {
+        cout << "Popped value in loop: " << numbers.top() << endl;
+        numbers.pop();
+    }
+    cout << "new top: " << numbers.top() << endl;
+    while(!numbers.empty())
+    {
+        cout << numbers.top() << " ";
+        numbers.pop();
+    }
+    return 0;
 }
-*/
-    int findsmallest(int* A, int start, int end)
-    {
-        int small = start;
-        for(int i = start + 1; i <= end; i++)
-        {
-            if(A[i] < A[small])
-            {
-                small = i;
-            }
-        }
-        return small;
-    }
-
-    void selectionsort(int* A, int start, int end)
-    {
-        for(int i = start; i <= end; i++)
-        {
-            int small = findsmallest(A, i, end);
-
-            swap(A[i], A[small]);
-        }
-    }  
-
-    int main()
-    {
-        /*int A[10] = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50};
-        int target;
-        cout << "Enter the target value: ";
-        cin >> target;
-        int result = binarysearch(A, 0, 9, target);
-        if(result != -1)
-            cout << "Found at index: " << result << endl;
-        else
-            cout << "Not found" << endl;
-        */
-
-        int A*;
-        A = new int[5];
-
-
-    }

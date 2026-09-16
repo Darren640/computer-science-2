@@ -1,2 +1,176 @@
 The algorithm starts by guessing the number in the middle of the range. After each guess, half of the remaining possible numbers are eliminated depending on whether the guess is too high or too low.
 For n = 1,000,000, the maximum possible number of guesses is 20. The binary search algorithm divides the range in half after each guess so the maximum number of guesses is 20
+
+1.B
+2.C
+3.B
+4.B 
+5.B 
+6.B 
+7.C 
+8.B 
+9.C 
+10.A
+11.A 
+12.C 
+13.B 
+14.A 
+15.B 
+16.B 
+17.C
+18.B 
+19.C
+20.B 
+21.A 
+22.A 
+23.B 
+24.C 
+25.C
+
+#include <iostream>
+using namespace std;
+
+int totalSum(int N[], int start, int end)
+{
+    int Sum = 0;
+    for(int i = start; i < end; i++)
+    {
+        Sum = Sum + N[i];
+
+    }
+    return Sum;
+}
+double Average(int N, int start, int end)
+{
+    double Average = 0.0
+    for(int i = start; i < end; i++)
+    {
+        Average = N[i] / 5;
+    }
+    return Average;
+}
+
+int main()
+{
+    int N[5];
+    int number;
+    cout << "Enter an number:" << endl;
+    cin >> number;
+
+}
+
+
+#include <iostream>
+using namespace std;
+
+int linearSearch(int Num, int start, int end, int key)
+{
+    for(int i = start; i <= end; i++)
+    {
+        if(Num == key)
+        {
+            cout << "Number found!! " << Num << endl;
+        }
+        else if(Num != key)
+        {
+            cout << "Number not found! " << endl;
+        }
+    }
+}
+
+
+
+int main()
+{
+    int Num[5] = {10,25,30,45,50};
+    int Number;
+    cin >> Number;
+    cout << "Enter an number: " << endl;
+}
+
+#include <iostream>
+using namespace std;
+
+int findtheSmallest(int Number[], int start, int end)
+{
+    int small = start;
+    for(int i = start; i <= end; i++)
+    {
+        if[Number] < Number[small])
+        {
+            small = i;
+        }
+    }
+}
+
+void selectionSort(int Number[], int start, int end,)
+{
+    for(int i = start; i <= end; i++)
+    {
+        int small = findtheSmallest(Number, start, end)
+        swap(Number[i], A[small]);
+    }
+}
+
+
+int main()
+{
+    int Number[5] = {50, 20, 40, 10, 30};
+    print(x,0,4);
+    cout << endl;
+}
+
+#include <iostream>
+using namespace std;
+
+class Student()
+{
+    public:
+    string name;
+    int age;
+
+}
+
+int main()
+{
+    cout << "Enter your name " << endl;
+    cout << "Enter your age" << endl;
+    cin >> Student;
+}
+
+
+#include <iostream> 
+using namespace std;
+
+int main()
+{
+    stack<int> numbers;
+    int N;
+    cout << "Enter 5 numbers: "
+    for(int i = 0; i < 5; i++)
+    {
+        cin >> N;
+        numbers.push(5);
+    }
+    cout << "Top: " << number.top() << endl;
+    cout << numbers.pop() << number.top() << endl;
+
+}
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    queue<int> numbers;
+    int N;
+    cout << "Enter 5 numbers: " << endl;
+    for(int i = 0; i < 5; i++
+    {
+        cin >> N;
+        numbers.push(5);
+    })
+    cout << "Front: " << numbers.front() << endl;
+    cout << "After pop, " << "Front: " << number.front() << endl;
+    
+}
