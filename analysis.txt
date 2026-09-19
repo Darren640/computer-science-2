@@ -174,3 +174,19 @@ int main()
     cout << "After pop, " << "Front: " << number.front() << endl;
     
 }
+
+
+// a function that mutiples two numbers
+// dispalys 25
+
+
+double mutiply()
+{
+    double num = number1 * number2;
+    return num;
+}
+
+int findLargest(int N[],int start, int end;)
+{
+    
+}
