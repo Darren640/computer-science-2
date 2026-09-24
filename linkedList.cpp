@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-struct Node {
+/*struct Node {
     int data;
     Node* next;
     Node(int val) : data(val), next(nullptr) {}
@@ -28,4 +28,8 @@ int main() {
         head = head->next;
         delete temp;
     }
+}
+*/
+class LinkedList {
+    
 }
