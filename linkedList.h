@@ -50,7 +50,7 @@ public:
         }
 
         Node* oldHead = head;
-        head = head->next;
+        head = (*head).next;
         delete oldHead;
 
         if (head == nullptr)
@@ -69,7 +69,7 @@ public:
             return;
         }
 
-        tail->next = newNode;
+        (*tail).next = newNode;
         tail = newNode;
     }
 
@@ -80,22 +80,22 @@ public:
             return;
         }
 
-        if (head->value == item)
+        if ((*head).value == item)
         {
             removeFront();
             return;
         }
 
         Node* current = head;
-        while (current->next != nullptr && current->next->value != item)
+        while ((*current).next != nullptr && (*current).next->value != item)
         {
             current = current->next;
         }
 
-        if (current->next != nullptr)
+        if ((*current).next != nullptr)
         {
-            Node* nodeToDelete = current->next;
-            current->next = nodeToDelete->next;
+            Node* nodeToDelete = (*current).next;
+            ( (*current).next = (*nodeToDelete).next );
 
             if (nodeToDelete == tail)
             {
@@ -123,13 +123,13 @@ public:
     {
         for (Node* i = head; i != nullptr; i = i->next)
         {
-            for (Node* j = i->next; j != nullptr; j = j->next)
+            for (Node* j = ((*i).next); j != nullptr; j = ((*j).next))
             {
-                if (i->value > j->value)
+                if ((*i).value > ((*j).value))
                 {
-                    string temp = i->value;
-                    i->value = j->value;
-                    j->value = temp;
+                    string temp = (*i).value;
+                    (*i).value = (*j).value;
+                    (*j).value = temp;
                 }
             }
         }
