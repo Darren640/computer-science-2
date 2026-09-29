@@ -1,6 +1,5 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <stdexcept>
 #include "Connect4.h"
 
 using namespace std;
@@ -10,30 +9,32 @@ Connect4::Connect4()
     rows = 6;
     columns = 7;
 
-    board = new char*[rows];
-
-    for(int i = 0; i < rows; i++)
+    board = new char*[rows]{};
+    for (int i = 0; i < rows; i++)
     {
         board[i] = new char[columns];
-
-        for(int j = 0; j < columns; j++)
+        for (int j = 0; j < columns; j++)
         {
             board[i][j] = ' ';
         }
     }
 }
+
 Connect4::Connect4(int NumRows, int NumColumns)
 {
+    if (NumRows <= 0 || NumColumns <= 0)
+    {
+        throw invalid_argument("Board dimensions must be positive!");
+    }
+
     rows = NumRows;
     columns = NumColumns;
 
-    board = new char*[rows];
-
-    for(int i = 0; i < rows; i++)
+    board = new char*[rows]{};
+    for (int i = 0; i < rows; i++)
     {
         board[i] = new char[columns];
-
-        for(int j = 0; j < columns; j++)
+        for (int j = 0; j < columns; j++)
         {
             board[i][j] = ' ';
         }
@@ -42,133 +43,157 @@ Connect4::Connect4(int NumRows, int NumColumns)
 
 void Connect4::DrawBoard()
 {
-    cout << " ";
-    for(int j = 0; j < columns; j++)
+    cout << "  ";
+    for (int j = 0; j < columns; j++)
     {
-        cout << " " << endl;
+        cout << j << ' ';
     }
     cout << endl;
-    for(int i = 0; i < rows; i++)
+
+    for (int i = 0; i < rows; i++)
     {
         cout << i << "|";
-        for(int j = 0; j < columns; j++)
+        for (int j = 0; j < columns; j++)
         {
             cout << board[i][j] << "|";
         }
+        cout << endl;
     }
-    cout << endl;
 
-
-    cout << " ";
-
-    for(int j = 0; j < columns; j++)
+    cout << "  ";
+    for (int j = 0; j < columns; j++)
     {
-    cout << "--";
+        cout << "--";
     }
     cout << "-" << endl;
-
 }
 
 bool Connect4::MakeMove(char piece, int column)
 {
-    if(column < 0 || column >= columns)
+    if ((piece != 'X' && piece != 'O') ||
+        column < 0 || column >= columns)
     {
         return false;
     }
-    for(int i = rows - 1; i >= 0; i--)
+
+    for (int i = rows - 1; i >= 0; i--)
     {
-        if(board[i][column] == ' ')
-        return true;
+        if (board[i][column] == ' ')
+        {
+            board[i][column] = piece;
+            return true;
+        }
     }
-return true;
+
+    return false; // Column is full.
 }
 
 char Connect4::Winner()
 {
-    //horizontal
-    for(int i = 0; i < rows; i++)
+    // Horizontal
+    for (int i = 0; i < rows; i++)
     {
-        for(int j = 0; j <= columns - 4; j++)
+        for (int j = 0; j <= columns - 4; j++)
         {
             char piece = board[i][j];
+            if (piece != ' ' &&
+                board[i][j + 1] == piece &&
+                board[i][j + 2] == piece &&
+                board[i][j + 3] == piece)
+            {
+                return piece;
+            }
+        }
+    }
 
-            if(piece != ' ' && board[i][j+1] == piece && board[i][j+2] == piece && board[i][j+3] == piece)
+    // Vertical
+    for (int i = 0; i <= rows - 4; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            char piece = board[i][j];
+            if (piece != ' ' &&
+                board[i + 1][j] == piece &&
+                board[i + 2][j] == piece &&
+                board[i + 3][j] == piece)
             {
                 return piece;
             }
         }
     }
-    //vertical
-    for(int i = 0; i < rows - 4; i++)
-    {
-        for(int j = 0; j <= columns; j++)
-        {
-            char piece = board[i][j];
-            
-            if(piece != ' ' && board[i][j+1] == piece && board[i][j+2] == piece && board[i][j+3] == piece)
-            {
-                return piece;
-            }
-        }
-    }
-    //diagonal down right
-    for(int i = 0; i < rows - 4; i++)
-    {
-        for(int j = 0; j < columns -4; j++)
-        {
-            char piece = board[i][j];
 
-            if(piece != ' ' && board[i][j+1] == piece && board[i][j+2] == piece && board[i][j+3] == piece)
-            {
-                return piece;
-            }
-        }
-    }
-    //diagonal up right
-    for(int i = 3; i < rows; i++)
+    // Diagonal down-right
+    for (int i = 0; i <= rows - 4; i++)
     {
-        for(int j = 0; j < columns; j++)
+        for (int j = 0; j <= columns - 4; j++)
         {
             char piece = board[i][j];
-
-            if(piece != ' ' && board[i][j+1] == piece && board[i][j+2] == piece && board[i][j+3] == piece)
+            if (piece != ' ' &&
+                board[i + 1][j + 1] == piece &&
+                board[i + 2][j + 2] == piece &&
+                board[i + 3][j + 3] == piece)
             {
                 return piece;
             }
         }
     }
+
+    // Diagonal up-right
+    for (int i = 3; i < rows; i++)
+    {
+        for (int j = 0; j <= columns - 4; j++)
+        {
+            char piece = board[i][j];
+            if (piece != ' ' &&
+                board[i - 1][j + 1] == piece &&
+                board[i - 2][j + 2] == piece &&
+                board[i - 3][j + 3] == piece)
+            {
+                return piece;
+            }
+        }
+    }
+
     return ' ';
 }
-    bool Connect4::GameOver()
+
+bool Connect4::GameOver()
+{
+    if (Winner() != ' ')
     {
-        if(Winner() !=  ' ')
-        {
-            return true;
-        }
-        //check if board is full
-        for(int j = 0; j < columns; j++)
-        {
-            if(board[0][j] == ' ')
-            {
-                return false;
-            }
-        }
-         return true;
+        return true;
     }
-   
-    int Connect4::getAiMove()
+
+    for (int j = 0; j < columns; j++)
     {
-        for(int j = 0; j < columns; j++)
+        if (board[0][j] == ' ')
+        {
+            return false;
+        }
+    }
+
+    return true; // The board is full: draw.
+}
+
+int Connect4::getAiMove()
+{
+    // Basic AI: choose the first column that is not full.
+    for (int j = 0; j < columns; j++)
+    {
+        if (board[0][j] == ' ')
         {
             return j;
         }
-        return -1;
     }
-    Connect4::~Connect4()
+
+    return -1;
+}
+
+Connect4::~Connect4()
+{
+    for (int i = 0; i < rows; i++)
     {
-        for(int i = 0; i < rows; i++)
-        {
-            delete[] board[i];
-        }
-        delete[] board;
+        delete[] board[i];
     }
+    delete[] board;
+}
