@@ -1,5 +1,4 @@
 #pragma once
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -11,7 +10,7 @@ private:
         string value;
         Node* next;
 
-        explicit Node(const std::string& item) : value(item), next(nullptr) {}
+        explicit Node(const string& item) : value(item), next(nullptr) {}
     };
 
     Node* head;
@@ -31,7 +30,7 @@ public:
     linkedList(const linkedList&) = delete;
     linkedList& operator=(const linkedList&) = delete;
 
-    void addFront(const std::string& item)
+    void addFront(const string& item)
     {
         Node* newNode = new Node(item);
         newNode->next = head;
@@ -60,7 +59,7 @@ public:
         }
     }
 
-    void addBack(const std::string& item)
+    void addBack(const string& item)
     {
         Node* newNode = new Node(item);
 
@@ -74,7 +73,7 @@ public:
         tail = newNode;
     }
 
-    void remove(const std::string& item)
+    void remove(const string& item)
     {
         if (head == nullptr)
         {
@@ -128,7 +127,7 @@ public:
             {
                 if (i->value > j->value)
                 {
-                    std::string temp = i->value;
+                    string temp = i->value;
                     i->value = j->value;
                     j->value = temp;
                 }
