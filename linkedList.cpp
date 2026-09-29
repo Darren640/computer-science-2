@@ -1,35 +1,59 @@
 #include <iostream>
+#include <string>
+#include <algorithm>
+#include "linkedList.h" //create and add this file to your project.
 using namespace std;
 
-/*struct Node {
-    int data;
-    Node* next;
-    Node(int val) : data(val), next(nullptr) {}
-};
 
-int main() {
-    Node* head = nullptr;              // empty list
+int main()
+{
+	//part 0:  Implement adding items to the front and displaying the list
+	linkedList list1;
 
-    // add 30, 20, 10 to the front → list becomes 10, 20, 30
-    for (int val : {30, 20, 10}) {
-        Node* n = new Node(val);
-        n->next = head;
-        head = n;
-    }
+	list1.addFront("pichacu");
+	list1.addFront("elmo");
+	list1.addFront("charmander");
+	list1.addFront("ekans");
 
-    // print
-    for (Node* cur = head; cur != nullptr; cur = cur->next)
-        cout << cur->data << " -> ";
-    cout << "nullptr\n";
+	list1.display(); //ekans charmander elmo pichacu
 
-    // free
-    while (head != nullptr) {
-        Node* temp = head;
-        head = head->next;
-        delete temp;
-    }
-}
-*/
-class LinkedList {
-    
+
+	//part 0.1:  Implement removal from front
+	list1.removeFront();
+	list1.removeFront();
+
+	list1.addFront("snorlax");
+
+	list1.display(); //snorlax elmo pichacu
+
+
+	//part 1:  implement "addBack"
+	linkedList list2;
+	list2.addBack("rattata");
+	list2.addBack("raticate");
+	list2.addBack("arcanine");
+	list2.addFront("arbok");
+	list2.addFront("eevee");
+
+	list2.display(); //eevee arbok rattata raticate arcanine
+
+
+	//part 2: implement "remove"
+	list2.remove("arcanine");
+	list2.remove("rattata");
+	list2.remove("eevee");
+
+	list2.addFront("dugtrio");
+	list2.addBack("charizard");
+
+	list2.display(); //dugtrio arbok raticate charizard
+
+	//part 3: implement "sort"
+	list1.sort();
+	list2.sort();
+
+	list1.display(); //elmo pichacu snorlax
+	list2.display(); //arbok charizard dugtrio raticate
+
+	return 0;
 }
