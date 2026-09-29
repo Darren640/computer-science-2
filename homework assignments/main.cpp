@@ -57,5 +57,28 @@ int main()
             cout << "Illegal move. Try again!" << endl;
             continue;
         }
+        if(game.Winner() != ' ')
+        {
+            game.DrawBoard();
+            cout << "Player " << game.Winner() << " WINS" << endl;
+            break;
+        }
+        if(currentPlayer == 'X')
+        {
+            currentPlayer == 'O';
+        }
+        else
+        {
+            currentPlayer = 'X';
+        }
     }
+    if(game.Winner() ==  ' ')
+    {
+        game.DrawBoard();
+        cout << "The game is a draw!!"<< endl;
+    } 
+    delete game;
+
+    return 0;
+
 }
