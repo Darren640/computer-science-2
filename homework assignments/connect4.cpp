@@ -5,6 +5,23 @@
 
 using namespace std;
 
+Connect4::Connect4()
+{
+    rows = 6;
+    columns = 7;
+
+    board = new char*[rows];
+
+    for(int i = 0; i < rows; i++)
+    {
+        board[i] = new char[columns];
+
+        for(int j = 0; j < columns; j++)
+        {
+            board[i][j] = ' ';
+        }
+    }
+}
 Connect4::Connect4(int NumRows, int NumColumns)
 {
     rows = NumRows;
@@ -146,4 +163,12 @@ char Connect4::Winner()
             return j;
         }
         return -1;
+    }
+    Connect4::~Connect4()
+    {
+        for(int i = 0; i < rows; i++)
+        {
+            delete[] board[i];
+        }
+        delete[] board;
     }
