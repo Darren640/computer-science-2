@@ -71,7 +71,7 @@ int main()
         }
         if(currentPlayer == 'X')
         {
-            currentPlayer == 'O';
+            currentPlayer = 'O';
         }
         else
         {
