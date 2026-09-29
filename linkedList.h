@@ -33,7 +33,7 @@ public:
     void addFront(const string& item)
     {
         Node* newNode = new Node(item);
-        newNode->next = head;
+        (*newNode).next = head;
         head = newNode;
 
         if (tail == nullptr)
@@ -48,7 +48,7 @@ public:
         {
             return;
         }
-
+    
         Node* oldHead = head;
         head = (*head).next;
         delete oldHead;
@@ -87,7 +87,7 @@ public:
         }
 
         Node* current = head;
-        while ((*current).next != nullptr && (*current).next->value != item)
+        while ((*current).next != nullptr && (*(*current).next).value != item)
         {
             current = current->next;
         }
@@ -108,7 +108,7 @@ public:
 
     void display() const
     {
-        for (Node* current = head; current != nullptr; current = current->next)
+        for (Node* current = head; current != nullptr; current = ((*current).next))
         {
             cout << current->value;
             if (current->next != nullptr)
@@ -121,7 +121,7 @@ public:
 
     void sort()
     {
-        for (Node* i = head; i != nullptr; i = i->next)
+        for (Node* i = head; i != nullptr; i = ((*i).next))
         {
             for (Node* j = ((*i).next); j != nullptr; j = ((*j).next))
             {
