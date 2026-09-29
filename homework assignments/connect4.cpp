@@ -155,4 +155,3 @@ char Connect4::Winner()
         }
         delete[] board;
     }
-}
