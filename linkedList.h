@@ -2,13 +2,13 @@
 
 #include <iostream>
 #include <string>
-
+using namespace std;
 class linkedList
 {
 private:
     struct Node
     {
-        std::string value;
+        string value;
         Node* next;
 
         explicit Node(const std::string& item) : value(item), next(nullptr) {}
@@ -111,13 +111,13 @@ public:
     {
         for (Node* current = head; current != nullptr; current = current->next)
         {
-            std::cout << current->value;
+            cout << current->value;
             if (current->next != nullptr)
             {
-                std::cout << ' ';
+                cout << ' ';
             }
         }
-        std::cout << '\n';
+        cout << '\n';
     }
 
     void sort()
