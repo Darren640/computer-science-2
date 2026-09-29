@@ -11,7 +11,7 @@ int main()
     cout << "How many players? (1 or 2): ";
     cin >> players;
 
-    Connect4 game;
+    Connect4* game;
 
     int choice;
     cout << "1. Standard 6x7 board" << endl;
@@ -19,9 +19,13 @@ int main()
     cout << "Choice: ";
     cin >> choice;
 
-    if(choice == 2)
+    if(choice == 1)
     {
-        int rows;
+        game = new Connect4;
+    }
+    else
+    {
+         int rows;
         int columns;
         cout << "Enter number of rows: ";
         cin >> rows;
@@ -29,21 +33,23 @@ int main()
         cout << "Enter number of colunms: ";
         cin >> columns;
 
-        game = Connect4(rows, columns);
+        game = new Connect4(rows, columns);
+    }    
+       
 
-    }
+    
     char currentPlayer = 'X';
 
-    while(!game.GameOver())
+    while(!(*game).GameOver())
     {
-        game.DrawBoard();
+        (*game).DrawBoard();
         cout << "It is " << currentPlayer << " 's turn." << endl;
 
         int column;
 
-        if(players == 1 && currentPlayer == "O")
+        if(players == 1 && currentPlayer == 'O')
         {
-            column = game.getAiMove();
+            column = (*game).getAiMove();
 
             cout << "AI chooses column: " << column << endl;
         }
@@ -52,15 +58,15 @@ int main()
             cout << "Column: ";
             cin >> column;
         }
-        if(!game.MakeMove(currentPlayer, column))
+        if(!(*game).MakeMove(currentPlayer, column))
         {
             cout << "Illegal move. Try again!" << endl;
             continue;
         }
-        if(game.Winner() != ' ')
+        if((*game).Winner() != ' ')
         {
-            game.DrawBoard();
-            cout << "Player " << game.Winner() << " WINS" << endl;
+            (*game).DrawBoard();
+            cout << "Player " << (*game).Winner() << " WINS" << endl;
             break;
         }
         if(currentPlayer == 'X')
@@ -72,9 +78,9 @@ int main()
             currentPlayer = 'X';
         }
     }
-    if(game.Winner() ==  ' ')
+    if((*game).Winner() ==  ' ')
     {
-        game.DrawBoard();
+        (*game).DrawBoard();
         cout << "The game is a draw!!"<< endl;
     } 
     delete game;
