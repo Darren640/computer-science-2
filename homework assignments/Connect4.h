@@ -1,5 +1,5 @@
 #ifndef CONNECT4_H
-#define CONNRCT4_4
+#define CONNRCT4_H
 
 class Connect4
 {
