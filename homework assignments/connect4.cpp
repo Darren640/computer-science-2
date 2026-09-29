@@ -147,7 +147,7 @@ char Connect4::Winner()
         }
         return -1;
     }
-    Connect4::~Connect4()
+    Connect4::Connect4()
     {
         rows = 6;
         columns = 7;
