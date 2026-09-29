@@ -149,9 +149,16 @@ char Connect4::Winner()
     }
     Connect4::~Connect4()
     {
+        rows = 6;
+        columns = 7;
+        board = new char*[rows];
         for(int i = 0; i < rows; i++)
         {
-            delete[] board[i];
+            board[i] = new char[columns];
+
+            for(int j = 0; j < columns; j++)
+            {
+                board[i][j] = ' ';
+            }
         }
-        delete[] board;
     }
