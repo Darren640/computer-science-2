@@ -121,7 +121,7 @@ char Connect4::Winner()
         }
     }
     return ' ';
-
+}
     bool Connect4::GameOver()
     {
         if(Winner() !=  ' ')
@@ -139,7 +139,7 @@ char Connect4::Winner()
          return true;
     }
    
-    int Connect4::GetIaMove()
+    int Connect4::getAiMove()
     {
         for(int j = 0; j < columns; j++)
         {
