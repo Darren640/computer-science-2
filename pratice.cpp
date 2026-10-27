@@ -267,6 +267,30 @@ class doublyLL
             head = prev;
                 }
         }
+        void slowSort()
+        {
+            if (head == nullptr || head->next == nullptr)
+                return;
+            node* current = head;
+            while (current != nullptr)
+            {
+                node* minNode = current;
+                node* runner = current->next;
+                while (runner != nullptr)
+                {
+                    if (runner->data < minNode->data)
+                        minNode = runner;
+                    runner = runner->next;
+                }
+                if (minNode != current)
+                {
+                    double temp = current->data;
+                    current->data = minNode->data;
+                    minNode->data = temp;
+                }
+                current = current->next;
+            }
+        }
 };
 
 int main()
