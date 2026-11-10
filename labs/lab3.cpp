@@ -1,5 +1,5 @@
 class TreeNode {
-    public:
+    private:
         int val;
         TreeNode* left;
         TreeNode* right;
@@ -23,5 +23,15 @@ class solution {
             {
                 return countLeaves(root->left) + countLeaves(root->right);
             }
+        }
+        int height(TreeNode* root)
+        {
+            if(root == nullptr)
+            {
+                return 0;
+            }
+            int leftHeight = height(root->left);
+            int rightHeight = height(root->right);
+            return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
         }
 };
