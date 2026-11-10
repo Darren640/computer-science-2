@@ -33,9 +33,13 @@ class binarysearchTree
     {
         if(p == nullptr)
             return;
+       else
+        { 
         print(p->left);
         cout << p->data << " ";
         print(p->right);
+        }
+       
     }
     void height(node* p, int& h)
     {
@@ -52,6 +56,48 @@ class binarysearchTree
 
     void print() {
         print(root);
+    }
+
+    void displayTree(node* p, int indent = 0) {
+        if(p == nullptr)
+            return;
+        displayTree(p->right, indent + 4);
+        for(int i = 0; i < indent; i++)
+            cout << " ";
+        cout << p->data << endl;
+        displayTree(p->left, indent + 4);
+    }
+
+    void displayTree() {
+        displayTree(root);
+    }
+
+    void displayVertical(node* p, string prefix = "", bool isLeft = true) {
+        if(p == nullptr)
+            return;
+        
+        cout << prefix;
+        cout << (isLeft ? "├── " : "└── ");
+        cout << p->data << endl;
+        
+        if(p->left != nullptr || p->right != nullptr) {
+            if(p->left != nullptr) {
+                displayVertical(p->left, prefix + (isLeft ? "│   " : "    "), true);
+            }
+            if(p->right != nullptr) {
+                displayVertical(p->right, prefix + (isLeft ? "│   " : "    "), false);
+            }
+        }
+    }
+
+    void displayVertical() {
+        cout << root->data << endl;
+        if(root->left != nullptr) {
+            displayVertical(root->left, "", true);
+        }
+        if(root->right != nullptr) {
+            displayVertical(root->right, "", false);
+        }
     }
 
     int height() {

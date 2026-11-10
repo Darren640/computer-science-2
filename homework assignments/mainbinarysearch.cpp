@@ -11,8 +11,14 @@ int main()
     {
         tree.insert(num[i]);
     }
+    
+    cout << "\nIn-order traversal: ";
     tree.print();
     cout << endl;
-    cout << "Height of tree: " << tree.height() << endl;
+    
+    cout << "\nTree Structure (Vertical):" << endl;
+    tree.displayVertical();
+    
+    cout << "\nHeight of tree: " << tree.height() << endl;
 
 }
